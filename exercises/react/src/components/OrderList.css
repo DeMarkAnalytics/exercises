@@ -1,0 +1,8 @@
+.order-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.order-list > div {
+  margin: 30px;
+}

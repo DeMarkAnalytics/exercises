@@ -1,0 +1,9 @@
+.order > * {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.ingredient .btn {
+  padding: 0;
+  margin-left: 10px;
+}
