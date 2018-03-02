@@ -7,5 +7,4 @@ ws.onopen = function () {
 const canvas = document.getElementById('canvas');
 
 // GOAL - handle messages from the websocket and draw the data onto the canvas
-// try handle websocket message and draw onto the canvas
-// note - websocket sends {date, index, value}
+// note - websocket sends {date, index, value (open, high, low, close)}
