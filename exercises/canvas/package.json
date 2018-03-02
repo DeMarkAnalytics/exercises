@@ -3,29 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "moment": "^2.19.3",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "react-scripts": "1.0.17",
-    "reactstrap": "^4.8.0",
-    "redux": "^3.7.2",
-    "uuid": "^3.1.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.12.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.3.1",
-    "eslint-plugin-react": "^7.5.1",
-    "prettier": "^1.8.2"
+    "express": "^4.16.2",
+    "ws": "^4.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "nodemon -w public -w src -w index.js ./index.js"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -59,5 +41,8 @@
         }
       ]
     }
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.1"
   }
 }
