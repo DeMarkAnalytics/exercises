@@ -35,7 +35,7 @@ wss.on('connection', (ws, req) => {
           )
         )
       }
-    }, 2000);
+    }, 1000);
   });
 });
 
@@ -51,7 +51,7 @@ function generateData(ordinal) {
   return {
     date: date.toDateString(),
     index: ordinal,
-    value: getRandomInt(50, 150)
+    value: createBarData()
   };
 }
 
@@ -59,6 +59,23 @@ function* ordinalMaker() {
   var index = 0;
   while(true)
     yield index++;
+}
+
+function createBarData() {
+  const minLow = 40;
+  const maxHigh = 260;
+  // get value and derive bar from that value
+  const value = getRandomInt(minLow, maxHigh);
+  const high = getRandomInt(value - 20, value + 20);
+  const low = getRandomInt(value - 20, value + 20);
+  const close = getRandomInt(low, high);
+  const open = getRandomInt(low, high);
+  return {
+    open,
+    high,
+    low,
+    close
+  }
 }
 
 function getRandomInt(min, max) {
