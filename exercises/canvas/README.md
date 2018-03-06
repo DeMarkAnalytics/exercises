@@ -1,10 +1,9 @@
 Exercise that involves drawing data from a websocket connection onto an HTML canvas
 
-To run example, use `npm start`
+To run use `npm start`
 
 ### Task
 
-Add websocket message handling/draw commands to `src/example`
+You are provided with a websocket connection that emits (fake) data for the price of a stock every 1 second. Your task is to create a bar chart based on that data that looks like:
 
-
-WebSocket data structure can be found in `index.js`
+![bar chart](docs/example1.png)
