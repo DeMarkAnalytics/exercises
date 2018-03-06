@@ -26,6 +26,9 @@ setInterval(() => {
     }
   })
 }, 1000)
+wss.on('connection', (ws) => {
+  ws.on('error', (error) => console.log(error))
+})
 
 server.listen(3000, () => {
   console.log(`Listening on http://localhost:3000`);
