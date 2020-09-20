@@ -2,11 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import {removeIngredient} from '../store/orders';
+import {removeIngredient, submitOrder} from '../store/orders';
+import { incrementCompletedOrders } from '../store/summaryPanel';
 
 import './Order.css';
 
 class Order extends React.Component {
+
   static propTypes = {
     order: PropTypes.shape({
       recipientName: PropTypes.string.isRequired,
@@ -19,14 +21,20 @@ class Order extends React.Component {
         })
       ).isRequired
     }),
-    removeIngredient: PropTypes.func.isRequired
+    removeIngredient: PropTypes.func.isRequired,
+    submitOrder: PropTypes.func.isRequired,
+    incrementCompletedOrders: PropTypes.func.isRequired
   };
 
   submitOrder = () => {
     // Stub. This method needs to mark the order as submitted.
+    const order = this.props.order;
+    this.props.submitOrder(order.id);
+    this.props.incrementCompletedOrders();
   };
 
   render() {
+    console.log('render');
     const {order} = this.props;
     const sortedIngredients = order.ingredients.sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -52,20 +60,21 @@ class Order extends React.Component {
             <div key={i} className="ingredient">
               {ingredient.name}
               <a
-                className="btn"
+                className={`btn ${order.orderedAt ? 'hidden' : ''}`}
+                title={`remove ${ingredient.name}`}
                 onClick={() =>
                   this.props.removeIngredient({
                     orderId: order.id,
                     ingredientId: ingredient.id
                   })
                 }>
-                x
+                  x
               </a>
             </div>
           ))}
         </div>
         <div className="submit-order">
-          <a className="btn btn-sm btn-primary" onClick={this.submitOrder}>
+          <a className={`btn btn-sm btn-primary ${order.orderedAt ? 'hidden' : ''}`} onClick={this.submitOrder}>
             Submit order
           </a>
         </div>
@@ -75,7 +84,9 @@ class Order extends React.Component {
 }
 
 const mapDispatchToProps = {
-  removeIngredient
+  removeIngredient,
+  submitOrder,
+  incrementCompletedOrders
 };
 
 export default connect(null, mapDispatchToProps)(Order);

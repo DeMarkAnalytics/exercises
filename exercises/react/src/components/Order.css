@@ -6,4 +6,9 @@
 .ingredient .btn {
   padding: 0;
   margin-left: 10px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
