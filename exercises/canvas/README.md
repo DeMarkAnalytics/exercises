@@ -12,7 +12,7 @@ You are provided with a websocket connection that emits (fake) data for the pric
 - Bars should be draw on a `canvas`
 - Only 20 bars should be visible at a time
 - Bars should be ordered from oldest to newest, left to right.
-
+- New bars should "push" out old bars on the left and be "inserted" on the right
 
 ![bar chart](docs/example1.png)
 
