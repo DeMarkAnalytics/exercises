@@ -32,8 +32,9 @@ data_set_home = "/home/byblakeorriver/Code/exercises/data/data-set.csv"
 df = spark.read.option("header", True).csv(data_set_home)
 
 // Load data set
-from pyspark.sql.functions import col, udf, max
+from pyspark.sql.functions import *
 from pyspark.sql.types import *
+from pyspark.sql.window import Window
 def int_to_boolean(i):
     if i==1:
         return True
@@ -42,19 +43,30 @@ def int_to_boolean(i):
 
 int_to_boolean_udf = udf(lambda row: int_to_boolean(row), BooleanType())
 
-df2 = df.withColumn("chocolate",int_to_boolean_udf(col("chocolate").cast(IntegerType()))).withColumn("fruity",int_to_boolean_udf(col("fruity").cast(IntegerType()))).withColumn("caramel",int_to_boolean_udf(col("caramel").cast(IntegerType()))).withColumn("peanutyalmondy",int_to_boolean_udf(col("peanutyalmondy").cast(IntegerType()))).withColumn("nougat",int_to_boolean_udf(col("nougat").cast(IntegerType()))).withColumn("crispedricewafer",int_to_boolean_udf(col("crispedricewafer").cast(IntegerType()))).withColumn("hard",int_to_boolean_udf(col("hard").cast(IntegerType()))).withColumn("bar",int_to_boolean_udf(col("bar").cast(IntegerType()))).withColumn("pluribus",int_to_boolean_udf(col("pluribus").cast(IntegerType()))).withColumn("sugarpercent",col("sugarpercent").cast(DoubleType())).withColumn("pricepercent",col("pricepercent").cast(DoubleType())).withColumn("winpercent",col("winpercent").cast(DoubleType()))     
+df2 = df.withColumn("chocolate",int_to_boolean_udf(col("chocolate").cast(IntegerType()))).withColumn("caramel",int_to_boolean_udf(col("caramel").cast(IntegerType()))).withColumn("sugarpercent",col("sugarpercent").cast(DoubleType())).withColumn("winpercent",col("winpercent").cast(DoubleType()))     
 
 df2.write.format("org.apache.spark.sql.cassandra").mode('append').options(table="candy",keyspace="candy_keyspace").save()
 
 //How many are chocolate (37)
-df2.select('*').where(col("chocolate") == True).count()
+df2.where(col("chocolate") == True).count()
 
 //How many are chocolate and not caramel (27)
-df2.select('*').where(col("chocolate") == True).where(col("caramel") == False).count()
+df2.where((col("chocolate") == True) & (col("caramel") == False)).count()
 
-// Find competitorname with highest winpercent
+// Find name with highest winpercent
+df2.orderBy(col('winpercent').desc()).show(1, False)
+OR
 max_win = df2.select(max("winpercent")).collect()[0][0]
-df2.select('competitorname').where(col('winpercent')==max_win).show()
+df2.select('name').where(col('winpercent') == max_win).show(10, False)
+
+
+// add a new column, sugary, if less than 33% low, 33 - 66 medium, over 66 high
+df3 = df2.withColumn("sugary", when(col("sugarpercent") < 0.33, "LOW").when((col("sugarpercent") >= 0.33) & (col("sugarpercent") < 0.66), "MEDIUM").otherwise("HIGH"))
+
+//rank the high, medium and low sugary
+
+df4 = df3.withColumn("rank", row_number().over(Window.partitionBy("sugary").orderBy(col("winpercent").desc())))
+df4.select("name","sugarpercent","sugary","winpercent","rank").where(col("rank") == 1).show(85,False)
 ```
 
 
