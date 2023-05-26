@@ -8,7 +8,7 @@ You are provided with a websocket connection that emits (fake) data for the pric
 
 ### Requirements
 
-- A bar char that looks like the given image below
+- A bar chart that looks like the given image below
 - Bars should be draw on a `canvas`
 - Only 20 bars should be visible at a time
 - Bars should be ordered from oldest to newest, left to right.
