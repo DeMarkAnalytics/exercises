@@ -1,16 +1,19 @@
+# Prescreen test
+
+## API Design
 1. **What are the key principles of REST? How do they affect your approach to API design?**
 
-1. **How would you design a RESTful API for a complex entity that has several relationships with other entities?**
-    1. Stock Market Tickers: Each ticker can be represented as a unique resource.
-    1. Companies: Similar to tickers, each company is a unique resource.
-    1. Company-Ticker Relationship: Each company can have multiple tickers (for example, on different stock exchanges). The relationsh
-ip can be modeled as follows: 
-    1. Exchanges: Each exchange can be represented as a unique resource.
-    1. Exchange-Company Relationship: Each exchange can list multiple companies.
-    1. Indexes: Each index is a unique resource.
-    1. Index-Company Relationship: Each index can comprise multiple companies.
-    1. Portfolios: Each portfolio is a unique resource.
-    1. Portfolio-Ticker Relationship: Each portfolio can have multiple tickers.
+1. **How would you design a RESTful API for a complex entity that has several relationships with other entities?** for example:
+    - Stock Market Tickers: Each ticker can be represented as a unique resource.
+    - Companies: Similar to tickers, each company is a unique resource.
+    - Company-Ticker Relationship: Each company can have multiple tickers (for example, on different stock exchanges). The relationsh
+ip c- modeled as follows: 
+    - Exchanges: Each exchange can be represented as a unique resource.
+    - Exchange-Company Relationship: Each exchange can list multiple companies.
+    - Indexes: Each index is a unique resource.
+    - Index-Company Relationship: Each index can comprise multiple companies.
+    - Portfolios: Each portfolio is a unique resource.
+    - Portfolio-Ticker Relationship: Each portfolio can have multiple tickers.
 
 
 1. **How would you handle versioning in a RESTful API design? Can you discuss the pros and cons of different strategies?**
@@ -19,6 +22,7 @@ ip can be modeled as follows:
 
 1. **How would you approach designing error messages in a RESTful API?**
 
+## React
 1. **Can you explain the difference between a functional component and a class component in React? When would you use one over the other?**
 
 1. **How do you handle component lifecycle in React, especially with the introduction of Hooks?**
@@ -29,6 +33,7 @@ ip can be modeled as follows:
 
 1. **Can you explain the concept of "props drilling" and how you would address this issue in a large React application?**
 
+## Micro Frontend
 1. **Can you explain the concept of a microfrontend? How does this architecture benefit the development and maintenance of large-scale applications?**
 
 1. **In a microfrontend architecture, what strategies would you use to ensure consistency in both design and functionality across different microfrontends?**
@@ -39,6 +44,7 @@ ip can be modeled as follows:
 
 1. **How would you approach testing in a microfrontend architecture, given that individual microfrontends might be developed and deployed independently?**
 
+## Kubernetes
 1. **Can you explain how Kubernetes' declarative model works for managing services and how it differs from the imperative model?**
 
 1. **What is Helm and how does it interact with Kubernetes to manage deployments?**
@@ -49,6 +55,7 @@ ip can be modeled as follows:
 
 1. **How would you monitor and troubleshoot issues in a Kubernetes environment? What tools would you use?**
 
+## NodeJS microservices
 1. **Can you explain how you would structure a Node.js application using a microservice architecture? What factors would you consider when defining each service?**
 
 1. **What are some challenges that you might face when implementing microservices in Node.js, and how would you address them?**
