@@ -1,6 +1,17 @@
 1. **What are the key principles of REST? How do they affect your approach to API design?**
 
 1. **How would you design a RESTful API for a complex entity that has several relationships with other entities?**
+    1. Stock Market Tickers: Each ticker can be represented as a unique resource.
+    1. Companies: Similar to tickers, each company is a unique resource.
+    1. Company-Ticker Relationship: Each company can have multiple tickers (for example, on different stock exchanges). The relationsh
+ip can be modeled as follows: 
+    1. Exchanges: Each exchange can be represented as a unique resource.
+    1. Exchange-Company Relationship: Each exchange can list multiple companies.
+    1. Indexes: Each index is a unique resource.
+    1. Index-Company Relationship: Each index can comprise multiple companies.
+    1. Portfolios: Each portfolio is a unique resource.
+    1. Portfolio-Ticker Relationship: Each portfolio can have multiple tickers.
+
 
 1. **How would you handle versioning in a RESTful API design? Can you discuss the pros and cons of different strategies?**
 

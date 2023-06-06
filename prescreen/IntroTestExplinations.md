@@ -3,6 +3,24 @@
 
 1. **How would you design a RESTful API for a complex entity that has several relationships with other entities?**
    This question can be used to probe deeper into the candidate's understanding of resource modeling, handling complex relations, URI design, and choosing the correct HTTP methods.
+    1. Stock Market Tickers: Each ticker can be represented as a unique resource.
+         - To retrieve a specific ticker: GET /tickers/{tickerId}
+    1. Companies: Similar to tickers, each company is a unique resource.
+         - To retrieve a specific company: GET /companies/{companyId}
+    1. Company-Ticker Relationship: Each company can have multiple tickers (for example, on different stock exchanges). The relationship can be modeled as follows:
+         - To retrieve all tickers for a specific company: GET /companies/{companyId}/tickers
+    1. Exchanges: Each exchange can be represented as a unique resource.
+         - To retrieve a specific exchange: GET /exchanges/{exchangeId}
+    1. Exchange-Company Relationship: Each exchange can list multiple companies.
+         - To retrieve all companies listed on a specific exchange: GET /exchanges/{exchangeId}/companies
+    1. Indexes: Each index is a unique resource.
+         - To retrieve a specific index: GET /indexes/{indexId}
+    1. Index-Company Relationship: Each index can comprise multiple companies.
+         - To retrieve all companies within a specific index: GET /indexes/{indexId}/companies
+    1. Portfolios: Each portfolio is a unique resource.
+         - To retrieve a specific portfolio: GET /portfolios/{portfolioId}
+    1. Portfolio-Ticker Relationship: Each portfolio can have multiple tickers.
+         - To retrieve all tickers within a specific portfolio: GET /portfolios/{portfolioId}/tickers
 
 1. **How would you handle versioning in a RESTful API design? Can you discuss the pros and cons of different strategies?**
    The candidate should be able to discuss different strategies such as URI versioning, request header versioning, or media type versioning and explain the situations in which each would be the most suitable.
